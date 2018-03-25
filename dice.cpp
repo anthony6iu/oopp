@@ -19,7 +19,7 @@ Dice(int n){
 
 Dice::
 Dice(int n, int* pstatus){
-    if(n>0 && n<MAX_DICENUM+1){
+    if(n > 0 && n < MAX_DICENUM + 1){
         nDice = n;
         pnDice = new int[nDice];
         roll();
@@ -42,17 +42,17 @@ Dice::
 
 const int* Dice::
 roll(){
-    for(int j=0;j<nDice;++j){
-        pnDice[j] = rand()%6+1;
+    for(int j = 0;j < nDice; ++j){
+        pnDice[j] = rand() % 6 + 1;
     }
     return pnDice;
 };
 // this is the rules for "<<" to output a Dice class instance and add this rule to "<<" redefinition.
 ostream& Dice::
 print(ostream& out){
-    for (int k=0; k<nDice; ++k) {
+    for (int k = 0; k < nDice; ++k) {
         out<<pnDice[k];
-        if(k<nDice-1) out<<" ";
+        if(k < nDice - 1) out<<"-";
     }
     return out;
 };

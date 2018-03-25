@@ -24,7 +24,7 @@ private:
     int nDice;
     int* pnDice;
 public:
-    Dice(int n=DEFAULT_DICENUM); // default with DEFAULT_DICNUM.
+    Dice(int n = DEFAULT_DICENUM); // default with DEFAULT_DICNUM.
     Dice(int, int*); // undefault constructor
     ~Dice();
     ostream& print(ostream&);
@@ -36,5 +36,5 @@ public:
     and you should tell compiler how the "<<" work when right side is a class.
     the rule is defined within print() member method.
  */
-inline ostream& operator << (ostream& out, Dice& dice){return dice.print(out);};
+inline ostream& operator << (ostream& out, Dice& dice){ return dice.print(out); };
 #endif /* dice_hpp */
