@@ -13,102 +13,131 @@
 #include "tools.hpp"
 #include "Player.hpp"
 
-template< class T>
-class CList; // forward declaration.
+// CList forward declaration.
+template< class T >
+class CList;
 
+// Cell declaration.
+template< class T >
 class Cell{
 private:
-        friend class CList<Cell>; // use friend class.
-        Player* plyr;
+        friend class CList<T>; // use friend class.
+        T* plyr;
         Cell* next;
-        Cell(Player* p){plyr = p;next = this;};
+        Cell(T* p){plyr = p;next = this;};
 };
 
+// CList follow declaration.
 template< class T >
 class CList{
 private:
     int pnum;
-    T* phead;
-    T* ptail;
-    T* pcurr;
-    // additional one.
-    T* pbefore;
+    Cell<T>* phead;
+    Cell<T>* ptail;
+    Cell<T>* pcurr;
+    // point to Cell before current position.
+    Cell<T>* prior;
 public:
-    CList(){
-        pnum = 0;
-        phead = NULL;
-        ptail = NULL;
-        pcurr = NULL;
-        // additional one.
-        pbefore = NULL;
-    };
-    ~CList(){
-    };
+    CList();
+    ~CList();
     int count(){return pnum;};
     bool empty(){return pnum == 0;};
     //
-    ostream& print(ostream& out){
-        if(pnum == 0) return out<<"CList is empty."<<endl;
-        // print 1st player.
-        out<<*(first());
-        // print follow players.
-        for(;;){
-            if(pcurr != ptail) out<<*(next());
-            if(pcurr == ptail) break;
-        }
-        pbefore = ptail;
-        pcurr = phead;
-        return out;
-    };
-    void insertBack(Player* p){
-        T* pT = new T(p);
-        // first player.
-        if(phead == NULL){
-            phead = pT;        // phead point to first Cell.
-            ptail = pT;        // ptail alse point to first Cell.
-            pT->next = phead;  // point to head as a cycle.
-        }
-        // not the first player.
-        else{
-            ptail->next = pT;  // link to new Cell.
-            ptail = pT;        // move ptail point new Cell
-            pT->next =  phead; // point to head as a cycle.
-        }
-        ++pnum;                // add # of Cells.
-    };
-    Player* first(){
-        if( empty() ) fatal("CList is empty.");
-        pcurr = phead;         // set pointer.
-        return phead->plyr;    // return first player.
-        
-    };  
-    Player* next(){
-        if( empty() ) fatal("CList is empty.");
-
-        pbefore = pcurr;       // save the last position.
-
-        pcurr = pcurr->next;   // set pcurr to pcurr's pcell.
-        return pcurr->plyr;    // return next player.
-    };
-    void remove(){
-        // CList is empty.
-        if( empty() ) fatal("CList is empty.");
-        // remove the first Cell.
-        if(pcurr == phead){
-            phead = pcurr->next;
-            pcurr = phead;
-        }
-        // remove Cell is not the first one.
-        else{
-            pbefore->next = pcurr->next;
-            pcurr = pcurr->next;
-        }
-        // if # == 0, set all point NULL as a new start.
-        if(--pnum == 0){phead = NULL;ptail = NULL;pcurr = NULL;pbefore = NULL;}
-    };
-//end
+    ostream& print(ostream&);
+    void insertBack(T*);
+    T* first();  
+    T* next();
+    void remove();
 };
 
+// CList implementation.
+template<class T> 
+CList<T>::
+CList(){
+    pnum = 0;
+    phead = NULL;
+    ptail = NULL;
+    pcurr = NULL;
+    // point to Cell before current position.
+    prior = NULL;
+};
+
+template<class T> 
+CList<T>::
+~CList(){};
+
+template<class T>
+ostream& CList<T>::
+print(ostream& out){
+    if(pnum == 0) return out<<"CList is empty."<<endl;
+    // print 1st player.
+    out<<*(first());
+    // print follow players.
+    for(;;){
+        if(pcurr != ptail) out<<*(next());
+        if(pcurr == ptail) break;
+    }
+    prior = ptail;
+    pcurr = phead;
+    return out;
+};
+
+template<class T>
+void CList<T>::
+insertBack(T* p){
+    Cell<T>* pT = new Cell<T>(p);
+    // first player.
+    if(phead == NULL){
+        phead = pT;        // phead point to first Cell.
+        ptail = pT;        // ptail alse point to first Cell.
+        pT->next = phead;  // point to head as a cycle.
+    }
+    // not the first player.
+    else{
+        ptail->next = pT;  // link to new Cell.
+        ptail = pT;        // move ptail point new Cell
+        pT->next =  phead; // point to head as a cycle.
+    }
+    ++pnum;                // add # of Cells.
+};
+
+template<class T>
+T* CList<T>::
+first(){
+    if( empty() ) fatal("CList is empty.");
+    pcurr = phead;         // set pointer.
+    return phead->plyr;    // return first player.
+};
+
+template<class T>
+T* CList<T>::
+next(){
+    if( empty() ) fatal("CList is empty.");
+    prior = pcurr;       // save the last position.
+    pcurr = pcurr->next;   // set pcurr to pcurr's pcell.
+    return pcurr->plyr;    // return next player.
+};
+
+template<class T>
+void CList<T>::
+remove(){
+    // CList is empty.
+    if( empty() ) fatal("CList is empty.");
+    // remove the first Cell.
+    if(pcurr == phead){
+        phead = pcurr->next;
+        pcurr = phead;
+    }
+    // remove Cell is not the first one.
+    else{
+        prior->next = pcurr->next;
+        pcurr = pcurr->next;
+    }
+    // if # == 0, set all point NULL as a new start.
+    if(--pnum == 0){phead = NULL;ptail = NULL;pcurr = NULL;prior = NULL;}
+};
+
+
 template< class T >
-inline ostream& operator << (ostream& out, CList< T >& clist){ return clist.print(out); };
+inline ostream& operator << (ostream& out, CList<T>& clist){ return clist.print(out); };
 #endif /* CList_hpp */

@@ -237,7 +237,7 @@ void unitBoard(ofstream& out){
 void unitCList(ofstream& out){
     out.open("CList_test_output.txt");
     banner(out);    
-    CList<Cell> clist;
+    CList<Player> clist;
     string name[4] = {"hunter","mage","priest","warrior"};
     out<<"Try to add: ";
     for(int a =0; a < 4; ++a){
@@ -252,7 +252,7 @@ void unitCList(ofstream& out){
     }
     out<<"-----All players have been saved.-----"<<endl;
     out<<"-------Print whole list first:--------"<<endl;
-    clist.print(out);
+    out<<clist;
     out<<"--------Call next() in a loop.--------"<<endl;
     for(int a = 0; a < 8; ++a){
         out<<*(clist.next());
@@ -260,28 +260,28 @@ void unitCList(ofstream& out){
     out<<"---------Remove first player:---------"<<endl;
     clist.remove();
     out<<"-------------Print list:--------------"<<endl;
-    clist.print(out);
+    out<<clist;
     out<<"---------Remove second player:--------"<<endl;
     clist.next();
     clist.remove();
     out<<"-------------Print list:--------------"<<endl;
-    clist.print(out);
+    out<<clist;
     out<<"-----------Add a new player.----------"<<endl;
     Player* np1 = new Player("new1",ColorEnum(1));
     clist.insertBack(np1);
     out<<"-------------Print list:--------------"<<endl;
-    clist.print(out);
+    out<<clist;
     out<<"-----------Remove all left.-----------"<<endl;
     clist.remove();clist.remove();clist.remove();
     out<<"-----------Print list now.------------"<<endl;
-    clist.print(out);
+    out<<clist;
     out<<"----------Add 2 new players.----------"<<endl;
     Player* np2 = new Player("new2",ColorEnum(2));
     clist.insertBack(np2);
     Player* np3 = new Player("new3",ColorEnum(3));
     clist.insertBack(np3); 
     out<<"-----------Print list now.------------"<<endl;
-    clist.print(out);
+    out<<clist;
     out.close();
     //
     delete np1;

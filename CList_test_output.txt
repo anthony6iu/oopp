@@ -2,7 +2,7 @@
 ----------------------------------------------------------------
 	Hongchi Liu
 	CSCI 6626
-	Sun Mar 25 2018	15:20:15
+	Mon Mar 26 2018	12:55:01
 ----------------------------------------------------------------
 Try to add: hunter(white) mage(orange) priest(yellow) warrior(green)  to CList.
 Add hunter to CList.

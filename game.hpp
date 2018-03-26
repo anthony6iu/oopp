@@ -31,7 +31,7 @@ private:
     ColorEnum player_color_list[PLAYER];
     Dice* dice;
     //vector<Player> player_list;
-    CList<Cell> player_list;
+    CList<Player> player_list;
     vector<Column> column_list;
 
     Board* board;

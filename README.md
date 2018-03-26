@@ -1,2 +1,2 @@
 # oopp
-course6626
+course6626 p7 CList template.
