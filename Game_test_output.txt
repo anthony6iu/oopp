@@ -2,11 +2,11 @@
 ----------------------------------------------------------------
 	Hongchi Liu
 	CSCI 6626
-	Mon Mar 26 2018	12:54:52
+	Tue Mar 27 2018	17:42:53
 ----------------------------------------------------------------
-Dices # are: 3-4-5-3
-PlayerName:    Hongchi   PlayerColor:  green
-PlayerName:        Liu   PlayerColor: orange
+Dices # are: 3-5-4-2
+PlayerName:        liu   PlayerColor: yellow
+PlayerName:        liu   PlayerColor: yellow
 
 ST | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA |
 13 |     |     |     |     |     |-----|     |     |     |     |     |
