@@ -13,9 +13,9 @@ Game(){
 	*/
 	
 	// construct dice.
-	dice = new Dice;
+	//dice = new FakeDice;
 	// construct board.
-	board = new Board;
+	//board = new Board;
 };
 Game::
 ~Game(){
@@ -87,7 +87,7 @@ getNewPlayer(){
 		// construct player()
 		Player* pt = new Player(player_name_list[k],player_color_list[k]);
 		player_list.insertBack(pt);
-		delete pt;
+		//delete pt;
 	}
 	// end words.
 	cout<<"Input finished.\n";
@@ -96,11 +96,12 @@ getNewPlayer(){
 
 ostream& Game::
 print(ostream& out){
+	/*
 	// print dice.
 	out<<"Dices # are: "<<(*dice)<<endl;
+	*/
 
-	// print players.
-	out<<player_list<<endl;
+	out<<player_list<<endl; // print players.
 
 	/*
 	// print columns.
@@ -166,7 +167,34 @@ p6test(ostream& out){
     board->stop();
 }
 
+void Game::
+p8test(ostream& out){
+	
+	for(int k = 0; k < 20; ++k){
+		Player* now;
+		if(k==0) now = player_list.first();
+		else     now = player_list.next();
 
+		board->startTurn(now);           // register current player to board.
+
+		const int* pPair = dice->roll(); // roll dice and generate 2 pairs -- pPair[0] and pPair[1].
+
+		out<<"Current Player: "<<*now<<"Choice: "<<pPair[0]<<" and "<<pPair[1]<<endl;
+
+		if(!board->move(pPair[0])){
+			board->stop();
+			out<<*board;
+			continue;
+		}
+		if(!board->move(pPair[1])){
+			board->stop();
+			out<<*board;
+			continue;
+		}
+		board->stop();
+		out<<*board;
+	}
+}
 
 
 

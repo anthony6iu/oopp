@@ -1,0 +1,34 @@
+Last login: Tue Apr  3 00:03:34 on ttys000
+[hongchiliu: ~]$ cd ./git/oopp
+[hongchiliu: ~/git/oopp]$ p8
+a: 3 b: 6 c: 4 d: 1 
+Choose first pair(such as: ad or bc,then press ENTER.)
+a 
+Choice is invalid. Try again.(1)
+  
+Choice is invalid. Try again.(2)
+ a
+Choice is invalid. Try again.(3)
+ae
+Choice is invalid. Try again.(4)
+cc
+Choice is invalid. Try again.(5)
+Try too many times, exit.
+
+[hongchiliu: ~/git/oopp]$ p8
+a: 2 b: 2 c: 5 d: 1 
+Choose first pair(such as: ad or bc,then press ENTER.)
+ab
+4 6
+Type player 1 name:
+___ONE___
+Choose a color from:
+1.orange 2.yellow 3.green 4.blue 
+1
+Type player 2 name:
+___TWO___
+Choose a color from:
+2.yellow 3.green 4.blue 
+3
+Input finished.
+[hongchiliu: ~/git/oopp]$ 

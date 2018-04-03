@@ -45,6 +45,9 @@ void unitColumn2(ofstream&);
 void unitBoard(ofstream&);
 //p7
 void unitCList(ofstream&);
+//p8
+void unitCSD(ofstream&);
+void unitFake(ofstream&);
 
 // main()
 int main(int argc, const char * argv[]) {
@@ -55,10 +58,14 @@ int main(int argc, const char * argv[]) {
     //unitDice(myout);   // p1 test plan
     //unitPlayer(myout); // p2 test plan
     //unitColumn(myout); // p3 test plan
-    unitGame(myout); // p4 test plan
+    //unitGame(myout); // p4 test plan
     //unitColumn2(myout);
     //unitBoard(myout);
-    unitCList(myout);
+    //unitCList(myout);
+    
+    // p8 test plan.
+    unitCSD(myout);
+    unitFake(myout);
     return 0;
 }
 
@@ -288,3 +295,64 @@ void unitCList(ofstream& out){
     delete np2;
     delete np3;
 }
+
+// p8 CantStopDice test
+void unitCSD(ofstream& out){
+    Dice* CSDtest = new CantStopDice();
+    CSDtest->roll();
+
+    /*
+    // generate fake_input.txt
+    ofstream myout;
+    myout.open(FAKE_INPUT);
+    for(int k = 0; k < 100; ++k){
+        Dice temp(4);
+        temp.roll();
+        myout<<temp;
+    }
+    myout.close();
+    */
+}
+
+
+void unitFake(ofstream& out){
+    out.open("fake_output.txt");
+    // open failed.
+    if(!out.is_open()) fatal("Output file open failed.\n");
+    // opne succeed.
+    banner(out);
+
+    // test FakeDice in game.
+    Game game;
+    game.p8test(out);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

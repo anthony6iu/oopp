@@ -25,6 +25,7 @@ private:
         T* plyr;
         Cell* next;
         Cell(T* p){plyr = p;next = this;};
+        ~Cell(){};
 };
 
 // CList follow declaration.

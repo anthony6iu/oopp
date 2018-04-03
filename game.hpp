@@ -29,12 +29,11 @@ class Game{
 private:
     string player_name_list[PLAYER];
     ColorEnum player_color_list[PLAYER];
-    Dice* dice;
-    //vector<Player> player_list;
+    Dice* dice = new FakeDice;
     CList<Player> player_list;
     vector<Column> column_list;
 
-    Board* board;
+    Board* board = new Board;
 public:
     Game();
     ~Game();
@@ -44,6 +43,8 @@ public:
     void p5test(ostream&);
     // p6 test function.
     void p6test(ostream&);
+    // added by p8, to test dice in game.
+    void p8test(ostream&);
 };
 
 inline ostream& operator << (ostream& out, Game& game){ return game.print(out); };
