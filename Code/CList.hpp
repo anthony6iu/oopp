@@ -48,7 +48,17 @@ public:
     void insertBack(T*);
     T* first();  
     T* next();
+    /*
+    I did a little modification on this remove() function, 
+    the return type is changed from void to T*, which will
+    return the next cell's T to caller, so that, I can access
+    the current Cell's T* after call remove().
+    Because neither first() nor next() can access the current
+    Cell.
+    --Hongchi
     void remove();
+     */
+    T* remove();
 };
 
 // CList implementation.
@@ -119,6 +129,7 @@ next(){
     return pcurr->plyr;    // return next player.
 };
 
+/*
 template<class T>
 void CList<T>::
 remove(){
@@ -137,7 +148,35 @@ remove(){
     // if # == 0, set all point NULL as a new start.
     if(--pnum == 0){phead = NULL;ptail = NULL;pcurr = NULL;prior = NULL;}
 };
+*/
 
+template<class T>
+T* CList<T>::
+remove(){
+    // CList is empty.
+    if( empty() ) fatal("CList is empty.");
+    // remove the first Cell.
+    if(pcurr == phead){
+        phead = pcurr->next;
+        pcurr = phead;
+    }
+    // remove Cell is not the first one.
+    else{
+        prior->next = pcurr->next;
+        pcurr = pcurr->next;
+    }
+    // if # == 0, set all point NULL as a new start.
+    if(--pnum == 0)
+        {
+            Cell<T>* last = pcurr;
+            phead = NULL;
+            ptail = NULL;
+            pcurr = NULL;
+            prior = NULL;
+            return  last->plyr;
+        }
+    else  return pcurr->plyr;
+};
 
 template< class T >
 inline ostream& operator << (ostream& out, CList<T>& clist){ return clist.print(out); };

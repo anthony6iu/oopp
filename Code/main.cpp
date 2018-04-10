@@ -332,10 +332,10 @@ void unitFake(ofstream& out){
 }
 
 void unitTurn(){
-
     Game game;
-    cout<<"Construct successful.\n";
+    cout<<"\n--------------------------Turn test starts.---------------------------\n";
     game.play();
+    cout<<"\n-------------------------Turn test finished.--------------------------\n";
 }
 
 

@@ -25,6 +25,7 @@
 #define PLAYER 3
 #define COLUMN_TEST_NUMBER 4
 #define GAME_TEST_TIME 25
+#define TURN_TEST_TIME 3
 class Game{
 private:
     // temp store players' infos.
