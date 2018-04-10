@@ -1,6 +1,12 @@
 #include "game.hpp"
 Game::
 Game(){
+	pair_values = new int[2];
+	dice = new FakeDice;
+	board = new Board;
+
+	gstat = begun;
+
 	// construct players.
 	if(!getNewPlayer()) fatal("Failed to initialed.\n");
 	/*
@@ -114,6 +120,79 @@ print(ostream& out){
 	out<<*board;
 	return out;
 };
+
+// p9
+
+void Game::
+play(){
+	Player* plyr = player_list.first();
+
+	for(int i = 0; i < 3; ++i){
+		cout<<plyr;
+		oneTurn(plyr);
+		cout<<plyr;
+	}
+
+    cout<<"Excellent!\n";
+};
+
+GameStatus Game::
+oneTurn(Player* p){
+	board->startTurn(p); // register player to board to start.
+	cout<<"Current Player: "<<*p; // Print out current player's information.
+
+	// Print out a menu:
+	bool flag = false;
+	do{
+
+		cout<<"-----Menu-----\n";
+		cout<<"1.Roll\n2.Stop\n3.Resign\n:";
+		char choice;
+		cin.get(choice);cin.ignore(1024,'\n');
+
+		switch(choice){
+			case '1': {
+				pair_values = dice->roll();
+				//cout<<pair_values[0]<<pair_values[1]<<"---\n";
+				cout<<*dice; // print out the dice pairs.
+
+				bool step1 = board->move(pair_values[0]); //  First pair sum move.
+				bool step2 = board->move(pair_values[1]); // Second pair sum move.
+				// If both pairs sum can not be chosen, bust and finish this turn.
+				if(!step1 and !step2){
+					board->bust();
+					//player_list.next();
+					flag = true;
+				}
+				cout<<*board; // Print board after finishing one dice move.
+				break;
+			}
+			case '2': {
+				board->stop(); 
+				p = player_list.next(); 
+				cout<<p;
+				flag = true; 
+				break;
+			} // Stop and finish this turn.
+			case '3': {
+				player_list.remove(); 
+				flag = true; 
+				break; 
+			} // Remove this player from list.
+			// When input selection choice is invalid. Let user reinput.
+			default: {
+				cout<<"Invalid selection. Try again.\n";
+				break;
+			}
+		};
+	}while(!flag);
+	cout<<"Turn finished. Board now is like:\n"<<*board;
+
+	return begun;
+};
+
+
+
 
 void Game::
 p5test(ostream& out){

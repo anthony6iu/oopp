@@ -48,6 +48,8 @@ void unitCList(ofstream&);
 //p8
 void unitCSD(ofstream&);
 void unitFake(ofstream&);
+//p9
+void unitTurn();
 
 // main()
 int main(int argc, const char * argv[]) {
@@ -64,8 +66,10 @@ int main(int argc, const char * argv[]) {
     //unitCList(myout);
     
     // p8 test plan.
-    unitCSD(myout);
-    unitFake(myout);
+    //unitCSD(myout);
+    //unitFake(myout);
+
+    unitTurn(); // p9
     return 0;
 }
 
@@ -327,7 +331,12 @@ void unitFake(ofstream& out){
     game.p8test(out);
 }
 
+void unitTurn(){
 
+    Game game;
+    cout<<"Construct successful.\n";
+    game.play();
+}
 
 
 

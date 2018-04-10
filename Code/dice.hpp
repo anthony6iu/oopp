@@ -40,7 +40,7 @@ public:
     int PairSum[2];
     CantStopDice():Dice(4){};
     ~CantStopDice(){};
-    const int* roll();
+    virtual const int* roll();
 };
 
 class FakeDice:public CantStopDice{

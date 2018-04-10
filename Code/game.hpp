@@ -22,22 +22,35 @@
 #include "board.hpp"
 #include "CList.hpp"
 
-#define PLAYER 2
+#define PLAYER 3
 #define COLUMN_TEST_NUMBER 4
 #define GAME_TEST_TIME 25
 class Game{
 private:
+    // temp store players' infos.
     string player_name_list[PLAYER];
     ColorEnum player_color_list[PLAYER];
-    Dice* dice = new FakeDice;
+    
+    //Dice* dice = new FakeDice;
+    Dice* dice;
+    
     CList<Player> player_list;
+    
     vector<Column> column_list;
 
-    Board* board = new Board;
+    //Board* board = new Board;
+    Board* board;
+    // current pair-values of the dice.
+    const int* pair_values;
+    GameStatus gstat;              // the game status.
+    GameStatus oneTurn(Player*); // a private function called by play().
+
 public:
     Game();
     ~Game();
     bool getNewPlayer();
+    // p9 
+    void play();
     ostream& print(ostream&);
     // p5 test function.
     void p5test(ostream&);

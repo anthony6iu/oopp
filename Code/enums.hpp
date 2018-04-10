@@ -21,6 +21,11 @@ enum ColumnEnum{
     pending,
     available
 };
+enum GameStatus{
+	begun,
+	done,
+	quit
+};
 
 extern const char* words[6];
 extern const char* column_state_words[4];
