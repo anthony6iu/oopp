@@ -31,34 +31,34 @@ private:
     // temp store players' infos.
     string player_name_list[PLAYER];
     ColorEnum player_color_list[PLAYER];
-    
-    //Dice* dice = new FakeDice;
+
     Dice* dice;
     
     CList<Player> player_list;
     
     vector<Column> column_list;
 
-    //Board* board = new Board;
     Board* board;
     // current pair-values of the dice.
     const int* pair_values;
     GameStatus gstat;              // the game status.
-    GameStatus oneTurn(Player*); // a private function called by play().
+    GameStatus oneTurn(Player**); // a private function called by play().
 
 public:
     Game();
     ~Game();
-    bool getNewPlayer();
+    bool getNewPlayer() throw (BadPlayer, BadName, BadColor);
     // p9 
     void play();
     ostream& print(ostream&);
+
     // p5 test function.
     void p5test(ostream&);
     // p6 test function.
     void p6test(ostream&);
     // added by p8, to test dice in game.
     void p8test(ostream&);
+
 };
 
 inline ostream& operator << (ostream& out, Game& game){ return game.print(out); };

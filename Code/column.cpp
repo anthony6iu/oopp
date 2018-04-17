@@ -113,8 +113,7 @@ stop(Player* plyr){
     marker[0] = 0;
     // if pending now, set to captured and plyr won this column.
     if( column_state == ColumnEnum(1)){
-        plyr->wonColumn(column_number);
-        column_state = ColumnEnum(0);
+        if(plyr->wonColumn(column_number)) column_state = ColumnEnum(0);
     }
 }
 // bust()

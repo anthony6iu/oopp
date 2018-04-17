@@ -117,7 +117,7 @@ T* CList<T>::
 first(){
     if( empty() ) fatal("CList is empty.");
     pcurr = phead;         // set pointer.
-    return phead->plyr;    // return first player.
+    return pcurr->plyr;    // return first player.
 };
 
 template<class T>
@@ -153,28 +153,27 @@ remove(){
 template<class T>
 T* CList<T>::
 remove(){
-    // CList is empty.
-    if( empty() ) fatal("CList is empty.");
     // remove the first Cell.
     if(pcurr == phead){
         phead = pcurr->next;
         pcurr = phead;
+        ptail->next = phead;
     }
     // remove Cell is not the first one.
     else{
         prior->next = pcurr->next;
         pcurr = pcurr->next;
     }
-    // if # == 0, set all point NULL as a new start.
-    if(--pnum == 0)
-        {
-            Cell<T>* last = pcurr;
-            phead = NULL;
-            ptail = NULL;
-            pcurr = NULL;
-            prior = NULL;
-            return  last->plyr;
-        }
+    --pnum;
+    // CList is empty.
+    if( empty() ) 
+    {
+        phead = NULL;
+        ptail = NULL;
+        pcurr = NULL;
+        prior = NULL;
+        return NULL;
+    }
     else  return pcurr->plyr;
 };
 

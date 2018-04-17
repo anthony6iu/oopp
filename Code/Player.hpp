@@ -30,4 +30,39 @@ public:
 };
 
 inline ostream& operator << (ostream& out, Player& player){ return player.print(out); };
+
+
+
+// p10 exception class: Badplayer();
+class BadPlayer {
+public:
+	string Name;
+	int Color;
+	BadPlayer(string name, int color) : Name(name), Color(color) {};
+	virtual void print(){
+		cerr<<"Both name and color are wrong.\n";
+		cerr<<"You entered "<<Name<<" and "<<words[Color]<<". Please reenter.\n";
+	}
+
+};
+
+class BadName : public BadPlayer{
+public:
+	BadName(string name, int color) : BadPlayer(name,color){};
+	virtual void print(){
+		cerr<<"Illegal Name: "<<Name<<" has already existed. Please reenter.\n";
+	}
+};
+
+class BadColor : public BadPlayer{
+public:
+	BadColor(string name, int color) : BadPlayer(name,color){};
+	virtual void print(){
+		cerr<<"Illegal Color. Please choose from list.\n";
+	}
+};
+
+
 #endif /* Player_hpp */
+
+

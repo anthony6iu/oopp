@@ -13,19 +13,22 @@ Player::
 Player(string name, ColorEnum color){
     PlayerName = name;
     PlayerColor = color;
-    if(name == "") fatal("illegal player name.(name can not be empty)\n");
+    if(name == "") fatal("Illegal player name.(name can not be empty)\n");
 };
 
 bool Player::
 wonColumn(int colNum){
-    if(Score < 3) ScoreBoard[Score++] = colNum;
-    return (Score >= 3);
+    if(Score < 3) {
+        ScoreBoard[Score] = colNum;
+        Score++;
+    }
+    return true;
 };
 
 ostream& Player::
 print(ostream& out){
     out<<"PlayerName: "<<setw(10)<<PlayerName<<"   PlayerColor: "<<setw(6)<<words[PlayerColor];
-    if(PlayerColor != 5 && Score >0){
+    if(PlayerColor != 5){
         out<<" Score: "<<Score;
         out<<" Won:";
         for(int j = 0; j<Score; ++j) out<<" "<<ScoreBoard[j];
