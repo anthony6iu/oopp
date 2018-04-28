@@ -4,6 +4,7 @@ Game(){
 	pair_values = new int[2];
 	dice = new FakeDice;
 	board = new Board;
+	SB = new ScoreBoard;
 
 	gstat = begun;
 
@@ -27,6 +28,7 @@ Game::
 ~Game(){
 	delete dice;
 	delete board;
+	delete SB;
 }
 
 bool Game::
@@ -43,7 +45,7 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 		// player name input
 		do{
 			try{
-				cout<<"Type player "<<(k+1)<<" name:\n";
+				cout<<"Type player "<<(k+1)<<" name: (whitespace is not permitted.)\n";
 				cin>>tempname;
 				for(a = 0; a < PLAYER; ++a){
 				// check temporary name if available.
@@ -167,8 +169,6 @@ getNewPlayer(){
 };
 */
 
-
-
 ostream& Game::
 print(ostream& out){
 	/*
@@ -198,7 +198,31 @@ play(){
 	do{
 		gstat = oneTurn(&plyr);
 	}while(gstat==begun);
-	if(gstat == done) cout<<"\n\nCongratulation! Winner is:\n"<<*plyr<<"\nSee you next time.\n";
+	if(gstat == done) {
+		/*
+		//p11
+		string pname = (*plyr).Namegetter();
+		int* pcol = (*plyr).SBgetter();
+		// update to Scoreboard:
+		char* c_pname = new char[pname.size()];
+		copy(pname.begin(),pname.end(),c_pname);
+		SB->update(c_pname,pcol);
+		*/
+
+		cout<<"\n\nCongratulation! Winner is:\n"<<*plyr<<"\nSee you next time.\n";
+		// remove all players and update their infos to Scoreboard.
+		do{
+			// get current player info.
+			string pname = (*plyr).Namegetter();
+			int* opcol = (*plyr).SBgetter();
+			// update info to Scoreboard:
+			char* c_opname = new char[pname.size()];
+			copy(pname.begin(),pname.end(),c_opname);
+			SB->update(c_opname,opcol);
+			// remove this player.
+			plyr = player_list.remove();
+		}while(player_list.count()!=0);
+	}
 	if(gstat == quit) cout<<"No more players. Game quit.\n";
 };
 
@@ -211,7 +235,7 @@ oneTurn(Player** p){
 	bool flag = false;
 	do{
 		cout<<"\n--------------------------------MENU----------------------------------\n";
-		cout<<"1.Roll\n2.Stop\n3.Resign\n:";
+		cout<<"1.Roll\n2.Stop\n3.Resign\n4.Show Scoreboard\n:";
 		int choice  = 0;
 		cin>>choice;
 		switch(choice){
@@ -245,10 +269,23 @@ oneTurn(Player** p){
 			// Remove this player from list.
 			case 3:{
 				cout<<"########################## PLAYER REMOVED ############################\n";
+				
+				//p11
+				string pname = (*p)->Namegetter();
+				int* pcol = (*p)->SBgetter();
+				// update to Scoreboard:
+				char* c_pname = new char[pname.size()];
+				copy(pname.begin(),pname.end(),c_pname);
+				SB->update(c_pname,pcol);
+
 				*p = player_list.remove(); 
 				if(*p == NULL) return quit;
 				flag = true; 
 				break; 
+			}
+			case 4:{
+				cout<<*SB;
+				break;
 			}
 			// When input selection choice is invalid. Let user reinput.
 			default: {

@@ -21,6 +21,7 @@
 #include "column.hpp"
 #include "board.hpp"
 #include "CList.hpp"
+#include "ScoreBoard.hpp"
 
 #define PLAYER 3
 #define COLUMN_TEST_NUMBER 4
@@ -43,6 +44,8 @@ private:
     const int* pair_values;
     GameStatus gstat;              // the game status.
     GameStatus oneTurn(Player**); // a private function called by play().
+
+    ScoreBoard* SB;
 
 public:
     Game();

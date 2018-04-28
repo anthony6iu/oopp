@@ -26,7 +26,9 @@ public:
     ColorEnum color(){ return PlayerColor; };
     int score(){ return Score; };
     bool wonColumn(int colNum);
-    
+    //p11
+    int* SBgetter(){return ScoreBoard;};
+    string Namegetter(){return PlayerName;};
 };
 
 inline ostream& operator << (ostream& out, Player& player){ return player.print(out); };
