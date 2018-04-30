@@ -29,4 +29,12 @@ public:
 	ostream& print(ostream&);	
 };
 inline ostream& operator << (ostream& out, ScoreBoard& scoreboard){ return scoreboard.print(out); };
+// p12
+// redine another operator:
+char* operator ~(string str){
+		char* temp_str = new char[str.size()];
+		copy(str.begin(),str.end(),temp_str);
+		return temp_str;
+}
 #endif
+

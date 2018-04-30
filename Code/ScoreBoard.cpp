@@ -31,9 +31,7 @@ void ScoreBoard::realize(){
 		temp_score.realize(in); // read his column.
 
 		// set SBpair:
-		char* c_pname = new char[pname.size()];
-		copy(pname.begin(),pname.end(),c_pname);
-		if(strcmp(c_pname,"\0")) SBm.insert(make_pair(c_pname,temp_score));
+		if(strcmp(~pname,"\0")) SBm.insert(make_pair(~pname,temp_score));
 	};
 	in.close();
 
@@ -80,10 +78,8 @@ void ScoreBoard::update(const char* name, const int* columns){
 		temp_score.update(cnt,columns);
 		// set temp c_str player name.
 		string s_name(name);
-		char* temp_name = new char[s_name.size()];
-		copy(s_name.begin(),s_name.end(),temp_name);
 		// set SBpair and insert to current map.
-		SBm.insert(make_pair(temp_name,temp_score));
+		SBm.insert(make_pair(~s_name,temp_score)); // use redefined ~ operator to convert str to char*.
 
 	}
 
