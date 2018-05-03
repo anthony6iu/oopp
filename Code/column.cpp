@@ -18,10 +18,14 @@ Column(int col_number){
         column_number = col_number;
         column_state = ColumnEnum(2);
         column_length = colLength[column_number];
+        ++ccnt;
     }
     else fatal("illegal input for Column constructor.");
 }
-
+Column::
+~Column(){
+    cout<<"$$$FREE MEMORY$$$ Column_"<<column_number<<" count: "<<--ccnt<<endl;
+}
 // print method
 ostream& Column::
 print(ostream& out){

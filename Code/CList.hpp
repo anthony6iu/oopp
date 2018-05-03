@@ -24,8 +24,9 @@ private:
         friend class CList<T>; // use friend class.
         T* plyr;
         Cell* next;
-        Cell(T* p){plyr = p;next = this;};
-        ~Cell(){};
+        int cellcnt = 0;
+        Cell(T* p){plyr = p;next = this;cellcnt++;};
+        ~Cell(){cout<<"$$$FREE MEMORY$$$ Cell count: "<<--cellcnt<<endl;};
 };
 
 // CList follow declaration.
@@ -75,7 +76,11 @@ CList(){
 
 template<class T> 
 CList<T>::
-~CList(){};
+~CList(){
+    for(int c = pnum; c!=0;--c){
+        delete next();
+    }
+};
 
 template<class T>
 ostream& CList<T>::
@@ -156,12 +161,14 @@ remove(){
     // remove the first Cell.
     if(pcurr == phead){
         phead = pcurr->next;
+        delete pcurr;
         pcurr = phead;
         ptail->next = phead;
     }
     // remove Cell is not the first one.
     else{
         prior->next = pcurr->next;
+        delete pcurr;
         pcurr = pcurr->next;
     }
     --pnum;

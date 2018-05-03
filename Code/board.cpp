@@ -16,6 +16,7 @@ Board(){
 		// initial 2 to 12 with Column pointer.
 		backBone[k] = new Column(k);
 	}
+	cnt++;
 };
 
 // destructor.
@@ -23,6 +24,7 @@ Board::
 ~Board(){
 	// free the memory allocated to backBone[2-12].
 	for(int k = 2; k < 13 ; ++k) delete backBone[k];
+	cout<<"$$$FREE MEMORY$$$ Board count: "<<--cnt<<endl;
 };
 
 //print().

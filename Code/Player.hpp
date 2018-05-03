@@ -16,12 +16,14 @@
 
 class Player{
 private:
+	int pcnt = 0;
     string PlayerName;
     ColorEnum PlayerColor;
     int Score = 0;
     int ScoreBoard[3] = {0};
 public:
     Player(string name = "default", ColorEnum color = ColorEnum(5));
+    ~Player();
     ostream& print(ostream& out);
     ColorEnum color(){ return PlayerColor; };
     int score(){ return Score; };

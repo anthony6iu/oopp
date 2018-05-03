@@ -91,6 +91,7 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 		// construct player()
 		Player* pt = new Player(player_name_list[k],player_color_list[k]);
 		player_list.insertBack(pt);
+		delete pt;
 	}
 	// end words.
 	cout<<"Input finished.\n";

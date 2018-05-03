@@ -13,6 +13,7 @@ Dice::
 Dice(int n): nDice(n){
     pnDice = new int[nDice];
     //roll();
+    cnt++;
 };
 
 Dice::
@@ -31,11 +32,13 @@ Dice(int n, int* pstatus){
         pnDice = new int[1];
         *pstatus = 0; // assign status as false.
     }
+    cnt++;
 };
 
 Dice::
 ~Dice(){
     delete [] pnDice; // free the dynamic memory that allocated.
+    cout<<"$$$FREE MEMORY$$$ Dice count: "<<--cnt<<endl;
 };
 
 const int* Dice::

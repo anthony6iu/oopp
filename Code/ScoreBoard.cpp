@@ -12,11 +12,12 @@ ScoreBoard::ScoreBoard(){
 	SBm.insert(SBp);
 	*/
 	realize();
-
+	cnt++;
 };
 
 ScoreBoard::~ScoreBoard(){
 	serialize();
+	cout<<"$$$FREE MEMORY$$$ ScoreBoard count: "<<--cnt<<endl;
 }
 
 void ScoreBoard::realize(){

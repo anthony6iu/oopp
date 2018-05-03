@@ -17,6 +17,7 @@
 
 class Column{
 private:
+    int ccnt = 0;
     static int colLength[13];
     int marker[5]={0,0,0,0,0};
     ColumnEnum column_state;
@@ -24,6 +25,7 @@ private:
     int column_length;
 public:
     Column(int);
+    ~Column();
     ColumnEnum state(){ return column_state; };
     ostream& print(ostream& out);
     //setter for test:

@@ -1,5 +1,5 @@
-P11 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
-	g++ -o p11 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+P12 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+	g++ -o p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
 main.o : main.cpp tools.hpp CList.hpp
 	g++ -c main.cpp CList.hpp
 tools.o : tools.cpp tools.hpp
@@ -22,4 +22,4 @@ score.o : Score.cpp Score.hpp
 	g++ -c Score.cpp
 .PHONY : clean
 clean :
-	rm p11 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+	rm p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o

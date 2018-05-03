@@ -20,6 +20,7 @@
 
 class Board{
 private:
+    int cnt = 0;
     static int ColLen[13];
     
     int towerCounter; // a counter to say how many towers are in use.

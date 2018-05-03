@@ -1,0 +1,103 @@
+Last login: Thu May  3 17:02:17 on ttys000
+[hongchiliu: ~]$ cd ./git/oopp/Code
+[hongchiliu: ~/git/oopp/Code]$ make
+g++ -o p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+[hongchiliu: ~/git/oopp/Code]$ p12
+Type player 1 name: (whitespace is not permitted.)
+1
+Choose a color from:
+1.orange 2.yellow 3.green 4.blue 
+1
+$$$FREE MEMORY$$$ Player count: 0
+Type player 2 name: (whitespace is not permitted.)
+2
+Choose a color from:
+2.yellow 3.green 4.blue 
+2
+$$$FREE MEMORY$$$ Player count: 0
+Type player 3 name: (whitespace is not permitted.)
+3
+Choose a color from:
+3.green 4.blue 
+3
+$$$FREE MEMORY$$$ Player count: 0
+Input finished.
+
+--------------------------Turn test starts.---------------------------
+Current Player: PlayerName:          2   PlayerColor: yellow Score: 0 Won:
+--------------------------------MENU----------------------------------
+1.Roll
+2.Stop
+3.Resign
+4.Show Scoreboard
+:3
+########################## PLAYER REMOVED ############################
+$$$FREE MEMORY$$$ Cell count: 0
+Turn finished. Board now is like:
+ST | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA |
+13 |     |     |     |     |     |-----|     |     |     |     |     |
+12 |     |     |     |     |     |-----|     |     |     |     |     |
+11 |     |     |     |     |-----|-----|-----|     |     |     |     |
+10 |     |     |     |     |-----|-----|-----|     |     |     |     |
+ 9 |     |     |     |-----|-----|-----|-----|-----|     |     |     |
+ 8 |     |     |     |-----|-----|-----|-----|-----|     |     |     |
+ 7 |     |     |-----|-----|-----|-----|-----|-----|-----|     |     |
+ 6 |     |     |-----|-----|-----|-----|-----|-----|-----|     |     |
+ 5 |     |-----|-----|-----|-----|-----|-----|-----|-----|-----|     |
+ 4 |     |-----|-----|-----|-----|-----|-----|-----|-----|-----|     |
+ 3 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+ 2 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+ 1 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+   | C 2 | C 3 | C 4 | C 5 | C 6 | C 7 | C 8 | C 9 | C10 | C11 | C12 |
+Current Player: PlayerName:              PlayerColor: yellow Score: 0 Won:
+--------------------------------MENU----------------------------------
+1.Roll
+2.Stop
+3.Resign
+4.Show Scoreboard
+:3
+########################## PLAYER REMOVED ############################
+$$$FREE MEMORY$$$ Cell count: 0
+Turn finished. Board now is like:
+ST | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA | AVA |
+13 |     |     |     |     |     |-----|     |     |     |     |     |
+12 |     |     |     |     |     |-----|     |     |     |     |     |
+11 |     |     |     |     |-----|-----|-----|     |     |     |     |
+10 |     |     |     |     |-----|-----|-----|     |     |     |     |
+ 9 |     |     |     |-----|-----|-----|-----|-----|     |     |     |
+ 8 |     |     |     |-----|-----|-----|-----|-----|     |     |     |
+ 7 |     |     |-----|-----|-----|-----|-----|-----|-----|     |     |
+ 6 |     |     |-----|-----|-----|-----|-----|-----|-----|     |     |
+ 5 |     |-----|-----|-----|-----|-----|-----|-----|-----|-----|     |
+ 4 |     |-----|-----|-----|-----|-----|-----|-----|-----|-----|     |
+ 3 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+ 2 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+ 1 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+   | C 2 | C 3 | C 4 | C 5 | C 6 | C 7 | C 8 | C 9 | C10 | C11 | C12 |
+Current Player: PlayerName:          3   PlayerColor:  green Score: 0 Won:
+--------------------------------MENU----------------------------------
+1.Roll
+2.Stop
+3.Resign
+4.Show Scoreboard
+:3
+########################## PLAYER REMOVED ############################
+$$$FREE MEMORY$$$ Cell count: 0
+No more players. Game quit.
+-------------------------Turn test finished.--------------------------
+------------------------Copyright  ©  Hongchi-------------------------
+$$$FREE MEMORY$$$ Dice count: 0
+$$$FREE MEMORY$$$ Column_2 count: 0
+$$$FREE MEMORY$$$ Column_3 count: 0
+$$$FREE MEMORY$$$ Column_4 count: 0
+$$$FREE MEMORY$$$ Column_5 count: 0
+$$$FREE MEMORY$$$ Column_6 count: 0
+$$$FREE MEMORY$$$ Column_7 count: 0
+$$$FREE MEMORY$$$ Column_8 count: 0
+$$$FREE MEMORY$$$ Column_9 count: 0
+$$$FREE MEMORY$$$ Column_10 count: 0
+$$$FREE MEMORY$$$ Column_11 count: 0
+$$$FREE MEMORY$$$ Column_12 count: 0
+$$$FREE MEMORY$$$ Board count: 0
+$$$FREE MEMORY$$$ ScoreBoard count: 0
+[hongchiliu: ~/git/oopp/Code]$ 

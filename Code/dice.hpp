@@ -24,7 +24,7 @@ using namespace std;
 
 class Dice{
 private:
-
+    int cnt = 0;
 public:
     int nDice;
     int* pnDice;

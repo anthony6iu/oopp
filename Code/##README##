@@ -1,36 +1,27 @@
-## P10 test:
 
-Terminal_Output_P10 is the output file for game logic testing.
-In this test, I used shell interface to introduce player to enter command.
-1.Roll(and move.)
-2.Stop
-3.Remove
-I tested with 3 players. __P1__ __P2__ and __P3__ color is orange yellow and green.
-TEST strategy:
-__P1__ choose Remove at the first turn.
-__P2__ Roll 3 times and won column 12.
-__P2__ stop his turn.
-__P3__ Roll a few times and go bust.Turn to __P2__.
-__P2__ Roll a few times and won column 6 and column 8 at the same time.
-__P2__ won 3 columns, Game over.
+## P12 Documentation:
 
-Input dice file: fake_input.txt.(in this file, dice values is used before comments.)
+Table of techniques:
+1. Redefine operator: Function: char* operator ~(string str), line 35 in ScoreBoard.hpp.
+2. const: Function: roll() Class: Dice, line 35 in dice.hpp.
+          Line 30, 31, 32 in enums.hpp.
+          Class: Game, line 44 in game.hpp.
+3. ctors: Class: Dice, line 13 in dice.cpp.
 
-Terminal_Output_P10_exceptions_test is the output file for exception part testing.
-I tested same name, and same color situations.
-I didnt use CheckData() funtions. I did mask filter in my getNewPlayer() functions.
+Proof no memory leaks: Because 10.13 MacOS High Sierra don't support Valgrind, I used cnt++
+in constructor and cout<<--cnt in destructor. I used $$$FREE MEMORY$$$ prefix in Terminal_Output_p12.
+
+UML diagram, UML of dice, state diagram for oneTurn and interaction diagram for oneTurn all included in this directory.
+
+Makefile also in this directory.
 
 ---Hongchi.
 
 
-## P11 test:
 
-Test strategy is same with P10. 
-Choose "Show Scoreboard" after __P1__ resigned to demonstrate the print() function works well.
-Input game history file named SBinput.txt.
-Output game history file named SBoutput.txt.
-If only use one file to record game history, this program works well,
-only thing need to change is modify "INF" in line 23, ScoreBoard.cpp to "OUTF",
-it will take output file as input file.
 
----Hongchi
+
+
+
+
+

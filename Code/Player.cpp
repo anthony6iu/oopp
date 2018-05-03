@@ -14,7 +14,13 @@ Player(string name, ColorEnum color){
     PlayerName = name;
     PlayerColor = color;
     if(name == "") fatal("Illegal player name.(name can not be empty)\n");
+    pcnt++;
 };
+
+Player::
+~Player(){
+    cout<<"$$$FREE MEMORY$$$ Player count: "<<--pcnt<<endl;
+}
 
 bool Player::
 wonColumn(int colNum){
