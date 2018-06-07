@@ -17,11 +17,6 @@ Player(string name, ColorEnum color){
     pcnt++;
 };
 
-Player::
-~Player(){
-    cout<<"$$$FREE MEMORY$$$ Player count: "<<--pcnt<<endl;
-}
-
 bool Player::
 wonColumn(int colNum){
     if(Score < 3) {
@@ -33,7 +28,7 @@ wonColumn(int colNum){
 
 ostream& Player::
 print(ostream& out){
-    out<<"PlayerName: "<<setw(10)<<PlayerName<<"   PlayerColor: "<<setw(6)<<words[PlayerColor];
+    out<<"PlayerName: "<<setw(8)<<PlayerName<<" PlayerColor: "<<setw(6)<<words[PlayerColor];
     if(PlayerColor != 5){
         out<<" Score: "<<Score;
         out<<" Won:";

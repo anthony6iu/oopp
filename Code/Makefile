@@ -1,25 +1,25 @@
-P12 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
-	g++ -o p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+p12 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+	g++ -std=c++11 -o p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
 main.o : main.cpp tools.hpp CList.hpp
-	g++ -c main.cpp CList.hpp
+	g++ -std=c++11 -c main.cpp CList.hpp
 tools.o : tools.cpp tools.hpp
-	g++ -c tools.cpp
+	g++ -std=c++11 -c tools.cpp
 dice.o : dice.cpp dice.hpp
-	g++ -c dice.cpp
+	g++ -std=c++11 -c dice.cpp
 enums.o : enums.cpp enums.hpp
-	g++ -c enums.cpp
+	g++ -std=c++11 -c enums.cpp
 Player.o : Player.cpp Player.hpp
-	g++ -c Player.cpp
+	g++ -std=c++11 -c Player.cpp
 column.o : column.cpp column.hpp
-	g++ -c column.cpp
+	g++ -std=c++11 -c column.cpp
 game.o : game.cpp game.hpp
-	g++ -c game.cpp
+	g++ -std=c++11 -c game.cpp
 board.o : board.cpp board.hpp
-	g++ -c board.cpp
+	g++ -std=c++11 -c board.cpp
 scoreboard.o : Scoreboard.cpp Scoreboard.hpp
-	g++ -c Scoreboard.cpp
+	g++ -std=c++11 -c Scoreboard.cpp
 score.o : Score.cpp Score.hpp
-	g++ -c Score.cpp
+	g++ -std=c++11 -c Score.cpp
 .PHONY : clean
 clean :
 	rm p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o

@@ -31,7 +31,7 @@ public:
 };
 inline ostream& operator << (ostream& out, ScoreBoard& scoreboard){ return scoreboard.print(out); };
 // p12
-// redine another operator:
+// redefine another operator:
 inline char* operator ~(string str){
 		char* temp_str = new char[str.size()];
 		copy(str.begin(),str.end(),temp_str);

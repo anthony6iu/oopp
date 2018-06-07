@@ -1,10 +1,9 @@
 #include "board.hpp"
 
-
 // initial static column length array.
 int Board::
 ColLen[13]={0,0,3,5,7,9,11,13,11,9,7,5,3};
-// constructor:
+
 Board::
 Board(){
 	for(int k = 0; k < 13; ++k){
@@ -19,7 +18,6 @@ Board(){
 	cnt++;
 };
 
-// destructor.
 Board::
 ~Board(){
 	// free the memory allocated to backBone[2-12].
@@ -27,7 +25,6 @@ Board::
 	cout<<"$$$FREE MEMORY$$$ Board count: "<<--cnt<<endl;
 };
 
-//print().
 ostream& Board::
 print(ostream& out){
 	// print column state.
@@ -60,21 +57,13 @@ print(ostream& out){
 	return out;
 };
 
-//
 void Board::
 startTurn(Player* plyr){
 	currPlayer = plyr;
 	towerCounter = 0;
 	for(int k = 0; k < 3; ++k) towerLocation[k] =0;
-	// need to reload this player state from board columns.
-	/*
-	for(int k = 2; k < 13; ++k){
-		if(backBone[k]->startTower(currPlayer)) towerLocation[towerCounter++] = k;
-	}
-	*/
 };
 
-//
 bool Board::
 move(int column){
 	if(backBone[column]->state() == ColumnEnum(0)) return false; // captured.
@@ -98,7 +87,6 @@ move(int column){
 	return true;
 };
 
-//
 void Board::
 stop(){
 	for(int k = 0; k < 3; ++k){
@@ -106,7 +94,6 @@ stop(){
 	}
 };
 
-// 
 void Board::
 bust(){
 	for(int k = 0; k < 3; ++k){

@@ -8,7 +8,6 @@
 
 #include "dice.hpp"
 
-
 Dice::
 Dice(int n): nDice(n){
     pnDice = new int[nDice];
@@ -25,10 +24,6 @@ Dice(int n, int* pstatus){
         *pstatus = 1; // assgin status as true.
     }
     else {
-        /*
-            if input dicenums is bigger than accepted, just allocate 1 element array memory, then system can call
-            ~Dice() correctly.
-         */
         pnDice = new int[1];
         *pstatus = 0; // assign status as false.
     }
@@ -71,7 +66,7 @@ roll(){
     bool valid = false;
     do{
         if(count>4) fatal("Try too many times, exit.\n");
-        cin.sync();cin.get(x);cin.get(y);cin.ignore(1);
+        cin>>x>>y;
         if(int(x) == int(y) || int(x) < 97 || int(x) > 100 || int(y) < 97 || int(y) > 100){
             cout<<"Choice is invalid. Try again.("<<++count<<")\n";
             continue;

@@ -1,16 +1,6 @@
 #include "ScoreBoard.hpp"
 
 ScoreBoard::ScoreBoard(){
-	// Create SBpair and inset into the map.
-	/*
-	Score sc;
-	char key[] = "GAME";
-	//SBp = make_pair(key,sc);
-	
-	SBp.first  = key;
-	SBp.second = sc;
-	SBm.insert(SBp);
-	*/
 	realize();
 	cnt++;
 };

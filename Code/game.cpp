@@ -2,28 +2,15 @@
 Game::
 Game(){
 	pair_values = new int[2];
-	dice = new FakeDice;
+	gstat = begun;
+	//dice = new FakeDice;
+	dice = new CantStopDice;
 	board = new Board;
 	SB = new ScoreBoard;
 
-	gstat = begun;
-
-	// construct players.
 	if(!getNewPlayer()) fatal("Failed to initialed.\n");
-	/*
-	// construct columns.
-	for(int k = 0; k < COLUMN_TEST_NUMBER; ++k){
-		Column temp(rand() % (12 -1) + 2);
-		temp.setter();
-		column_list.push_back(temp);
-	}
-	*/
-	
-	// construct dice.
-	//dice = new FakeDice;
-	// construct board.
-	//board = new Board;
 };
+
 Game::
 ~Game(){
 	delete dice;
@@ -33,21 +20,28 @@ Game::
 
 bool Game::
 getNewPlayer() throw (BadPlayer, BadColor, BadName){
+	bool ctn = true;
+	int cnt = 0;
 	int k = 0;
-	for(k = 0; k < PLAYER; ++k){
 
+	while(ctn){
+		cout<<"How many players in this game?(2-4)\n";
+		cin>>cnt;
+		if(1 < cnt && cnt < 5) ctn = false;
+	}
+
+	for(k = 0; k < cnt; ++k){
 		// declare some variables.
-		string tempname; // save temporary player name.
+		string tempname;   // save temporary player name.
 		int tempcolor = 5; // save temporary player color.
 		int a = 0;
 		int b = 0;
-
 		// player name input
 		do{
 			try{
-				cout<<"Type player "<<(k+1)<<" name: (whitespace is not permitted.)\n";
+				cout<<"Type player "<<(k+1)<<" name: (Whitespace is not permitted.)\n";
 				cin>>tempname;
-				for(a = 0; a < PLAYER; ++a){
+				for(a = 0; a < cnt; ++a){
 				// check temporary name if available.
 					if(tempname == player_name_list[a]) throw BadName(tempname,5);
 				}
@@ -55,7 +49,7 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 			catch(BadName& bn){bn.print();}
 			catch(bad_alloc bn){cerr<<"Allocation error.\n";}
 			catch(...){cerr<<"Last-ditch effort to catch exceptions.\n";};
-		}while(a!=PLAYER);
+		}while(a!=cnt);
 		player_name_list[k] = tempname;
 
 		// player color input.
@@ -63,10 +57,10 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 			cout<<"Choose a color from:\n";
 			for(int c = 1; c < 5; ++c){
 				int d = 0;
-				for(d = 0; d < PLAYER; ++d){
+				for(d = 0; d < cnt; ++d){
 					if(c == player_color_list[d]) break;
 				}
-				if(d == PLAYER){
+				if(d == cnt){
 					cout<<c<<"."<<words[c]<<" ";
 				}
 			}
@@ -75,7 +69,7 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 			try{
 				cin>>tempcolor;
 
-				for(b = 0; b < PLAYER; ++b){
+				for(b = 0; b < cnt; ++b){
 					// check temporary color if has been chosen.
 					if(tempcolor == player_color_list[b]) throw BadColor(tempname,tempcolor);
 					// check temporay color if invaild.(out of range)
@@ -85,58 +79,33 @@ getNewPlayer() throw (BadPlayer, BadColor, BadName){
 			catch(BadColor& bc){bc.print();}
 			catch(bad_alloc bn){cerr<<"Allocation error.\n";}
 			catch(...){cerr<<"Last-ditch effort to catch exceptions.\n";};
-		}while(b != PLAYER);
+		}while(b != cnt);
 		player_color_list[k] = ColorEnum(tempcolor);
 
 		// construct player()
 		Player* pt = new Player(player_name_list[k],player_color_list[k]);
 		player_list.insertBack(pt);
-		delete pt;
 	}
-	// end words.
+
 	cout<<"Input finished.\n";
-	return (k == PLAYER);
+	return true;
 };
 
 ostream& Game::
 print(ostream& out){
-	/*
-	// print dice.
-	out<<"Dices # are: "<<(*dice)<<endl;
-	*/
-
 	out<<player_list<<endl; // print players.
-
-	/*
-	// print columns.
-	for(vector<Column>::iterator iter = column_list.begin(); iter != column_list.end(); ++iter){
-		out<<*iter<<endl;
-	}
-	*/
-
-	// print board.
-	out<<*board;
+	out<<*board;            // print board.
 	return out;
 };
 
-// p12
 void Game::
 play(){
 	Player* plyr = player_list.first();
 	do{
 		gstat = oneTurn(&plyr);
 	}while(gstat==begun);
+	
 	if(gstat == done) {
-		/*
-		//p11
-		string pname = (*plyr).Namegetter();
-		int* pcol = (*plyr).SBgetter();
-		// update to Scoreboard:
-		char* c_pname = new char[pname.size()];
-		copy(pname.begin(),pname.end(),c_pname);
-		SB->update(c_pname,pcol);
-		*/
-
 		cout<<"\n\nCongratulation! Winner is:\n"<<*plyr<<"\nSee you next time.\n";
 		// remove all players and update their infos to Scoreboard.
 		do{
@@ -157,12 +126,15 @@ play(){
 GameStatus Game::
 oneTurn(Player** p){
 	board->startTurn(*p); // register player to board to start.
-	cout<<"Current Player: "<<**p; // Print out current player's information.
+	//cout<<"Current Player: "<<**p; // Print out current player's information.
 
 	// Print out a menu:
 	bool flag = false;
 	do{
-		cout<<"\n--------------------------------MENU----------------------------------\n";
+		cout<<"\n";
+		cout<<"\n----------------------------------------------------------------------\n";
+		cout<<"Current: "<<**p;
+		cout<<"\n>>------------------------------MENU--------------------------------<<\n";
 		cout<<"1.Roll\n2.Stop\n3.Resign\n4.Show Scoreboard\n:";
 		int choice  = 0;
 		cin>>choice;
@@ -170,7 +142,7 @@ oneTurn(Player** p){
 			// Normal roll and move step.
 			case 1:{
 				pair_values = dice->roll();
-				cout<<"Dice pairs sum are: "<<*dice; // print out the dice pairs.
+				//cout<<"Dice pairs sum are: "<<*dice; // print out the dice pairs.
 
 				bool step1 = board->move(pair_values[0]); //  First pair sum move.
 				bool step2 = board->move(pair_values[1]); // Second pair sum move.
@@ -201,11 +173,17 @@ oneTurn(Player** p){
 				//p11
 				string pname = (*p)->Namegetter();
 				int* pcol = (*p)->SBgetter();
+				
 				// update to Scoreboard:
 				char* c_pname = new char[pname.size()];
 				copy(pname.begin(),pname.end(),c_pname);
 				SB->update(c_pname,pcol);
 
+				// remove tiles from board.
+				ColorEnum pcolor = (*p)->Colorgetter();
+				for(int j = 2; j < 13; ++j) board->getter(j)->setter(pcolor);
+
+				// remove player from list.
 				*p = player_list.remove(); 
 				if(*p == NULL) return quit;
 				flag = true; 

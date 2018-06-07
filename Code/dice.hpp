@@ -26,13 +26,14 @@ class Dice{
 private:
     int cnt = 0;
 public:
-    int nDice;
-    int* pnDice;
     Dice(int n = DEFAULT_DICENUM); // default with DEFAULT_DICNUM.
     Dice(int, int*); // undefault constructor.
     ~Dice();
     virtual ostream& print(ostream&);
     virtual const int* roll();
+protected:
+    int nDice;
+    int* pnDice;
 };
 
 class CantStopDice:public Dice{

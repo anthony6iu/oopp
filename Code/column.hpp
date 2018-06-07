@@ -29,7 +29,7 @@ public:
     ColumnEnum state(){ return column_state; };
     ostream& print(ostream& out);
     //setter for test:
-    void setter();
+    void setter(int color){marker[color] = 0;};
     // p5 column2 parts:
     bool startTower(Player*);
     bool move();

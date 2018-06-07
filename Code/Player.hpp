@@ -23,7 +23,6 @@ private:
     int ScoreBoard[3] = {0};
 public:
     Player(string name = "default", ColorEnum color = ColorEnum(5));
-    ~Player();
     ostream& print(ostream& out);
     ColorEnum color(){ return PlayerColor; };
     int score(){ return Score; };
@@ -31,11 +30,11 @@ public:
     //p11
     int* SBgetter(){return ScoreBoard;};
     string Namegetter(){return PlayerName;};
+    //p12 modified:
+    ColorEnum Colorgetter(){return PlayerColor;};
 };
 
 inline ostream& operator << (ostream& out, Player& player){ return player.print(out); };
-
-
 
 // p10 exception class: Badplayer();
 class BadPlayer {
@@ -65,7 +64,6 @@ public:
 		cerr<<"Illegal Color. Please choose from list.\n";
 	}
 };
-
 
 #endif /* Player_hpp */
 

@@ -31,22 +31,6 @@ ostream& Column::
 print(ostream& out){
     out<<"column: "<<setw(2)<<column_number<<" state: "<<setw(12)<<column_state_words[column_state]<<" ";
     for(int k = 1; k < colLength[column_number]+1; ++k){
-        /*
-        // empty slots
-        if(k != column_length) out<<"-----|";
-        // unempty slots
-        else{
-            for(int j = 0; j < 5; ++j){
-                if(marker[j] == 1){
-                    out<<CHAR[j];
-                }
-                else out<<"-";
-            }
-            out<<" ";
-            //if call break next line, means that stop output at unempty slot.
-            //break;
-        }
-        */
        for(int m = 0; m < 5; ++m){
             if(marker[m] == k){
                 out<<CHAR[m];
@@ -59,27 +43,6 @@ print(ostream& out){
     return out;
 }
 
-// setter() is only used for test purpose.
-void Column::
-setter(){
-    /*
-    // set slot
-    for (int k = 0; k < 5; ++k) marker[k] = rand() % (column_length + 1);
-    // set state
-    int rand_state = rand() % 3;
-    column_state = ColumnEnum(rand_state);
-    */
-    // commentted above to make p5 test easier.
-    for (int k = 0; k < 5; ++k) marker[k] = 0;
-    // set orange color player position below, to make p5 test easier.
-    // start at random position 0,1,2.
-    marker[1] = rand()%3;
-    // start with random state 0,2.
-    column_state = ColumnEnum(rand()%2 * 2);
-}
-
-//p5
-// startTower()
 bool Column::
 startTower(Player* plyr){
     // check columen state:
@@ -88,7 +51,7 @@ startTower(Player* plyr){
         ColorEnum color = plyr->color();
         if(marker[(int)color] > 0){
             marker[0] = marker[(int)color];
-            marker[(int)color] = 0;
+            //marker[(int)color] = 0;
         }
         return true;
         //return false;
@@ -96,7 +59,7 @@ startTower(Player* plyr){
     // column state is captured.
     else return false;
 }
-// move()
+
 bool Column::
 move(){
     // if column is available now.
@@ -109,7 +72,7 @@ move(){
     }
     return false;
 }
-// stop()
+
 void Column::
 stop(Player* plyr){
     ColorEnum color = plyr->color();
@@ -120,30 +83,13 @@ stop(Player* plyr){
         if(plyr->wonColumn(column_number)) column_state = ColumnEnum(0);
     }
 }
-// bust()
+
 void Column::
 bust(){
     marker[0] = 0;
     column_state = ColumnEnum(2);
 }
 
-// p6
-/*
-    modified print() function.
-    ostream& modified_print(ostream& out, int height);
-    height is a new param to pass the current position on board display,
-    the 1st line height is 13, the down to 1.
-    line after height 1 is columne index.
-    graph:
-    13 |     |     |     |     |     |-----|     |     |     |     |     |
-    12 |     |     |     |     |     |-----|     |     |     |     |     |
-    11 |     |     |     |     |-----|-----|-----|     |     |     |     |
-    ...
-    ...
-    ...
-    01 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-         C02 | C03 |...
- */
 ostream& Column::
 modified_print(ostream& out, int height){
     if(height > column_length) out<<"     "<<"|";

@@ -23,10 +23,8 @@
 #include "CList.hpp"
 #include "ScoreBoard.hpp"
 
-#define PLAYER 3
-#define COLUMN_TEST_NUMBER 4
-#define GAME_TEST_TIME 25
-#define TURN_TEST_TIME 3
+#define PLAYER 4
+
 class Game{
 private:
     // temp store players' infos.
@@ -54,14 +52,6 @@ public:
     // p9 
     void play();
     ostream& print(ostream&);
-
-    // p5 test function.
-    void p5test(ostream&);
-    // p6 test function.
-    void p6test(ostream&);
-    // added by p8, to test dice in game.
-    void p8test(ostream&);
-
 };
 
 inline ostream& operator << (ostream& out, Game& game){ return game.print(out); };

@@ -27,7 +27,6 @@ private:
     int towerLocation[3]; // an arrray of length 3 that tells which columns contain those towers.
     Column* backBone[13]; // contain 13 column pointers.
     Player* currPlayer; // current player.
-    // own need functions.
 public:
     Board();
     ~Board();// destructor.
@@ -36,6 +35,8 @@ public:
     bool move(int column);
     void stop();
     void bust();
+
+    Column* getter(int cno){return backBone[cno];};
 };
 
 inline ostream& operator << (ostream& out, Board& board){ return board.print(out); };
