@@ -27,8 +27,15 @@ Board::
 
 ostream& Board::
 print(ostream& out){
+	// print upper bound of board.
+	out<<"* * *";
+	for(int d = 2; d < 13; ++d){
+		out<<" * * *";
+	}
+	out<<"*"<<endl;
+
 	// print column state.
-	out<<"ST |";
+	out<<"*ST |";
 	string state;
 	for(int c = 2; c <13; ++c){
 		if(backBone[c]->state() == ColumnEnum(0)) state = "CAP";
@@ -36,24 +43,31 @@ print(ostream& out){
 		if(backBone[c]->state() == ColumnEnum(2)) state = "AVA";
 		out<<" "<<state<<" |";
 	}
-	out<<endl;
+	out<<"*"<<endl;
 
 	// print column information.
 	for(int h = 13; h > 0; --h){
+		out<<"*";
 		out<<setw(2)<<h<<" |";
 		for(int c = 2; c < 13 ; ++c){
 			backBone[c]->modified_print(out,h);
 		}
-		out<<endl;
+		out<<"*"<<endl;
 	}
 
 	// print column index.
-	out<<"   |";
+	out<<"*   |";
 	for(int x = 2; x < 13; ++x){
 		out<<" C"<<setw(2)<<x<<" |";
 	}
-	out<<endl;
+	out<<"*"<<endl;
 
+	// print lower bound of board.
+	out<<"* * *";
+	for(int d = 2; d < 13; ++d){
+		out<<" * * *";
+	}
+	out<<"*"<<endl;
 	return out;
 };
 

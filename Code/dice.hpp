@@ -26,12 +26,12 @@ class Dice{
 private:
     int cnt = 0;
 public:
+    virtual ostream& print(ostream&);
+protected:
     Dice(int n = DEFAULT_DICENUM); // default with DEFAULT_DICNUM.
     Dice(int, int*); // undefault constructor.
     ~Dice();
-    virtual ostream& print(ostream&);
     virtual const int* roll();
-protected:
     int nDice;
     int* pnDice;
 };
@@ -42,6 +42,7 @@ public:
     CantStopDice():Dice(4){};
     ~CantStopDice(){};
     virtual const int* roll();
+    virtual ostream& print(ostream&);
 };
 
 class FakeDice:public CantStopDice{
@@ -53,12 +54,14 @@ public:
     const int* roll();
     ostream& print(ostream& out){return out<<setw(2)<<PairSum[0]<<" "<<setw(2)<<PairSum[1]<<endl;};
 };
+
 /*
     2 params for operator is out and dice, the purpose should be like: out<<dice;
     and you should tell compiler how the "<<" work when right side is a class.
     the rule is defined within print() member method.
  */
 inline ostream& operator << (ostream& out, Dice& dice){ return dice.print(out); };
+//inline ostream& operator << (ostream& out, CantStopDice& dice){ return dice.print(out); };
 //inline ostream& operator << (ostream& out, FakeDice& dice){ return dice.print(out); };
 
 

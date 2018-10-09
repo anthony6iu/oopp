@@ -1,4 +1,4 @@
-p12 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
+  cler p12 : main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
 	g++ -std=c++11 -o p12 main.o tools.o dice.o enums.o Player.o column.o game.o board.o scoreboard.o score.o
 main.o : main.cpp tools.hpp CList.hpp
 	g++ -std=c++11 -c main.cpp CList.hpp

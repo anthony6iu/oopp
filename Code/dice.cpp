@@ -21,12 +21,15 @@ Dice(int n, int* pstatus){
         nDice = n;
         pnDice = new int[nDice];
         roll();
-        *pstatus = 1; // assgin status as true.
+        // assign status as true.
+        *pstatus = 1;
     }
     else {
         pnDice = new int[1];
-        *pstatus = 0; // assign status as false.
+        // assign status as false.
+        *pstatus = 0;
     }
+    
     cnt++;
 };
 
@@ -53,6 +56,11 @@ print(ostream& out){
     out<<endl;
     return out;
 };
+
+ostream& CantStopDice::
+print(ostream& out){
+    return Dice::print(out);
+}
 
 const int* CantStopDice::
 roll(){
